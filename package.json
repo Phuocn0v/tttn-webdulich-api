@@ -1,0 +1,66 @@
+{
+  "name": "webdulich-api",
+  "version": "1.0.0",
+  "description": "API cho website đặt tour du lịch, được thực hiện trong quá trình thực tập tốt nghiệp",
+  "main": "sever.ts",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon --esm sever.ts",
+    "run": "ts-node --esm sever.ts"
+  },
+  "keywords": [
+    "api",
+    "tourist",
+    "admin",
+    "user"
+  ],
+  "author": "phuocn0v",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.17",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.43.0",
+    "eslint-config-standard-with-typescript": "^35.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "typescript": "^5.1.5"
+  },
+  "dependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/supertest": "^2.0.12",
+    "bcrypt": "^5.1.0",
+    "bcrypt-ts": "^3.0.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "i": "^0.3.7",
+    "jest": "^29.5.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.3.1",
+    "nodemon": "^2.0.22",
+    "npm": "^9.7.2",
+    "query-string": "^8.1.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    }
+  }
+}
