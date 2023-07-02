@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { ILogin, ISignup } from "../interface/auth";
-import account from "../controller/account";
+import account from "../controller/accountController";
 import { hashPassword } from "../utils/bcrypt";
 import * as jwt from "jsonwebtoken";
 
-const router = Router();
+const authRouter = Router();
 
-router.post("/login", async (req, res) => {
+authRouter.post("/login", async (req, res) => {
     const loginData: ILogin = req.body;
     const user = await account.checkLogin(loginData.usernameOrEmail, loginData.password);
     if (user === -1) {
@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
     return;    
 });
 
-router.post("/register", async (req, res) => {
+authRouter.post("/register", async (req, res) => {
     const signupData: ISignup = req.body;
     const valid = await account.checkValidSignup(signupData.username, signupData.email);
     switch (valid) {
@@ -40,4 +40,4 @@ router.post("/register", async (req, res) => {
     }
 });
 
-export default router;
+export default authRouter;
