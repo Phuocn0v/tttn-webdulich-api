@@ -112,7 +112,7 @@ Add notes about how to use the system.
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+Not deployed yet, still working in process
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
