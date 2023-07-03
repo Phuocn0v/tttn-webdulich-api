@@ -90,20 +90,35 @@ Finally, run the development server
 
 Explain how to run the automated tests for this system.
 
-### Break down into end to end tests
+Running tests for all functions in the project
 
-Explain what these tests test and why
-
-```
-Give an example
+```bash
+  npm run test
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
 ```
-Give an example
+ PASS  tests/service.test.ts (5.644 s)
+  ● Console
+
+    console.log
+      Connected to database
+
+      at NativeConnection.<anonymous> (database.ts:12:17)
+
+ PASS  tests/auth.test.ts (5.867 s)
+  ● Console
+
+    console.log
+      Connected to database
+
+      at NativeConnection.<anonymous> (database.ts:12:17)
+
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        6.511 s
+Ran all test suites.
 ```
 
 ## 🎈 Usage <a name="usage"></a>
