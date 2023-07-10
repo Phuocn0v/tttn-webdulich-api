@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
     email: mongoose.Schema.Types.String,
     firstName: mongoose.Schema.Types.String,
     lastnNme: mongoose.Schema.Types.String,
-    role: [mongoose.Schema.Types.String],
+    roles: [mongoose.Schema.Types.String],
 });
 
 const accountSchema = mongoose.model("Account", schema);

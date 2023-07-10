@@ -17,7 +17,7 @@ authRouter.post("/login", async (req, res) => {
         res.status(401).json({ message: "Username or email is not existed!" });
         return;
     }
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_PRIVATE_KEY as string, { expiresIn: "1d" });
+    const token = jwt.sign({ id: user._id, roles: user.roles }, process.env.JWT_PRIVATE_KEY as string, { expiresIn: "1d" });
     res.status(200).json({ token: token });
     return;    
 });

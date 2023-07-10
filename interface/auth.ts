@@ -10,3 +10,8 @@ export interface ISignup {
     firstName: string;
     lastName: string;
 }
+
+export interface IJwtTokenData {
+    id: string;
+    roles: string[];
+}

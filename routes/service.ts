@@ -19,7 +19,7 @@ serviceRouter.post('/', async (req, res) => {
     const serviceData: IService = req.body
     serviceController.createService(serviceData)
     res.status(200).json({ message: "Create service successfully!" })
-}, roleRequire.adminRequire)
+}, roleRequire.rolesRequire(['admin']))
 
 serviceRouter.put('/:id', async (req, res) => {
     const serviceData: IService = req.body
@@ -30,7 +30,7 @@ serviceRouter.put('/:id', async (req, res) => {
     }
     await serviceSchema.findByIdAndUpdate(req.params.id, serviceData)
     res.status(200).json({ message: "Update service successfully!" })
-}, roleRequire.adminRequire)
+}, roleRequire.rolesRequire(['admin']))
 
 serviceRouter.delete('/:id', async (req, res) => {
     const service = await serviceController.findServiceById(req.params.id)
@@ -40,6 +40,6 @@ serviceRouter.delete('/:id', async (req, res) => {
     }
     await serviceSchema.findByIdAndDelete(req.params.id)
     res.status(200).json({ message: "Delete service successfully!" })
-}, roleRequire.adminRequire)
+}, roleRequire.rolesRequire(['admin']))
 
 export default serviceRouter
