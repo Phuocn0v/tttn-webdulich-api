@@ -1,7 +1,7 @@
-import { IDriver } from './../interface/driver';
+import { IDriver } from '../../interface/driver';
 import { Router, NextFunction } from "express";
-import driverController from "../controller/driverController";
-import driverSchema from "../schema/driver";
+import driverController from "../../controller/driverController";
+import driverSchema from "../../schema/driver";
 
 const driverRouter = Router();
 

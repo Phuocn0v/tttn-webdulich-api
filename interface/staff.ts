@@ -7,4 +7,5 @@ export default interface IStaff {
     dateJoined: Date;
     username: string;
     password: string;
+    role: string[];
 }

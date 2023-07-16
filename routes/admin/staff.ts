@@ -1,8 +1,8 @@
 import { NextFunction, Router } from 'express';
-import staffSchema from '../schema/staff';
-import staffController from '../controller/staffController';
-import IStaff from '../interface/staff';
-import serviceController from '../controller/serviceController';
+import staffSchema from '../../schema/staff';
+import staffController from '../../controller/staffController';
+import IStaff from '../../interface/staff';
+import serviceController from '../../controller/serviceController';
 
 
 const staffRouter = Router();

@@ -15,31 +15,4 @@ serviceRouter.get('/:id', async (req, res) => {
     res.status(200).json({ service: sv })
 })
 
-serviceRouter.post('/', roleRequire.rolesRequire(['admin', 'staff_service']), async (req, res) => {
-    const serviceData: IService = req.body
-    await serviceController.createService(serviceData)
-    res.status(200).json({ message: "Create service successfully!" })
-});
-
-serviceRouter.put('/:id', roleRequire.rolesRequire(['admin', 'staff_service']), async (req, res) => {
-    const serviceData: IService = req.body
-    const service = await serviceController.findServiceById(req.params.id)
-    if (service === null) {
-        res.status(400).json({ message: "Service is not existed!" })
-        return
-    }
-    await serviceSchema.findByIdAndUpdate(req.params.id, serviceData)
-    res.status(200).json({ message: "Update service successfully!" })
-})
-
-serviceRouter.delete('/:id',roleRequire.rolesRequire(['admin', 'staff_service']), async (req, res) => {
-    const service = await serviceController.findServiceById(req.params.id)
-    if (service === null) {
-        res.status(400).json({ message: "Service is not existed!" })
-        return
-    }
-    await serviceSchema.findByIdAndDelete(req.params.id)
-    res.status(200).json({ message: "Delete service successfully!" })
-})
-
 export default serviceRouter

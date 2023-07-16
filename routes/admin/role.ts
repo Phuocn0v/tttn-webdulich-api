@@ -1,8 +1,6 @@
 import { Router } from "express";
-import IRole from "../interface/role";
-import roleController from "../controller/roleController";
-import mongoose, { Schema, mongo } from "mongoose";
-import schema from "../schema";
+import IRole from "../../interface/role";
+import roleController from "../../controller/roleController";
 
 const roleRouter = Router();
 

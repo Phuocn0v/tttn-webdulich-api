@@ -2,20 +2,16 @@ import Express from 'express';
 import bodyParser from 'body-parser';
 import authRouter from './routes/auth';
 import serviceRouter from './routes/service';
-import roleRouter from './routes/role';
-import staffRouter from './routes/staff';
+import roleRouter from './routes/admin/role';
+import staffRouter from './routes/admin/staff';
 import tourguideRouter from './routes/tourguide';
-import driverRouter from './routes/driver';
+import driverRouter from './routes/admin/driver';
+import adminRouter from './routes/admin/admin';
 const app = Express();
 
 app.use(bodyParser.json());
 
 app.use("/auth", authRouter);
-app.use("/service", serviceRouter);
-app.use("/role", roleRouter);
-app.use("/staff", staffRouter);
-app.use("/tourguide", tourguideRouter);
-app.use("/driver", driverRouter);
-
+app.use("/admin", adminRouter);
 
 export default app;
