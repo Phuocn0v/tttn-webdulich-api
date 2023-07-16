@@ -1,4 +1,4 @@
-import { IUser } from "../interface/user";
+import { IAccount } from "../interface/user";
 import accountSchema from "../schema/account";
 import { comparePassword } from "../utils/bcrypt";
 import mongoose from "mongoose";
@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 async function checkLogin(usernameOrEmail: string, password: string) {
   // Return -1 when username or email not found
   // -2 when password not match
-  const res: IUser | null = await accountSchema.findOne({
+  const res: IAccount | null = await accountSchema.findOne({
     $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
   });
   if (!res) {

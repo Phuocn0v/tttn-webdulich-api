@@ -3,6 +3,7 @@ import * as jwt from 'jsonwebtoken';
 
 const rolesRequire = (roles: String[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
+        console.log("rolesRequire")
         const authHeader = req.headers.authorization;
         const token = authHeader?.split(' ')[1];
 
