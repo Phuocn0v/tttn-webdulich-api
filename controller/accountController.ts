@@ -7,18 +7,30 @@ import mongoose from "mongoose";
 async function checkLogin(usernameOrEmail: string, password: string, isStaff: boolean = false) {
   // Return -1 when username or email not found
   // -2 when password not match
-  const res: IAccount | null = isStaff ? await staffSchema.findOne({
-    $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
-  })
-    : await accountSchema.findOne({
+  
+  if(isStaff) {
+    const res: IAccount | null = await staffSchema.findOne({
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
     })
-  if (!res) {
-    return -1;
-  } else {
-    const isMatch = await comparePassword(password, res.password);
-    if (!isMatch) return -2;
-    return res;
+    if (!res) {
+      return -1;
+    } else {
+      const isMatch = await comparePassword(password, res.password);
+      if (!isMatch) return -2;
+      return res;
+    }
+  }
+  else {
+    const res: IAccount | null = await accountSchema.findOne({
+      $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+    })
+    if (!res) {
+      return -1;
+    } else {
+      const isMatch = await comparePassword(password, res.password);
+      if (!isMatch) return -2;
+      return res;
+    }
   }
 }
 

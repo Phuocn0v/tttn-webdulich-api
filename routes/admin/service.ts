@@ -6,6 +6,8 @@ import roleRequire from '../../middleware/roleRequire';
 
 const serviceRouter = Router()
 
+serviceRouter.use(roleRequire(["admin"]))
+
 serviceRouter.get('/', async (req, res) => {
     res.status(200).json({ services: await serviceSchema.find()})
 })
@@ -15,13 +17,13 @@ serviceRouter.get('/:id', async (req, res) => {
     res.status(200).json({ service: sv })
 })
 
-serviceRouter.post('/', roleRequire.rolesRequire(['admin', 'staff_service']), async (req, res) => {
+serviceRouter.post('/', async (req, res) => {
     const serviceData: IService = req.body
     await serviceController.createService(serviceData)
     res.status(200).json({ message: "Create service successfully!" })
 });
 
-serviceRouter.put('/:id', roleRequire.rolesRequire(['admin', 'staff_service']), async (req, res) => {
+serviceRouter.put('/:id', async (req, res) => {
     const serviceData: IService = req.body
     const service = await serviceController.findServiceById(req.params.id)
     if (service === null) {
@@ -32,7 +34,7 @@ serviceRouter.put('/:id', roleRequire.rolesRequire(['admin', 'staff_service']), 
     res.status(200).json({ message: "Update service successfully!" })
 })
 
-serviceRouter.delete('/:id',roleRequire.rolesRequire(['admin', 'staff_service']), async (req, res) => {
+serviceRouter.delete('/:id', async (req, res) => {
     const service = await serviceController.findServiceById(req.params.id)
     if (service === null) {
         res.status(400).json({ message: "Service is not existed!" })

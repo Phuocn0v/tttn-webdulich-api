@@ -21,23 +21,4 @@ authAdminRouter.post("/login", async (req, res) => {
     res.status(200).json({ token: token });
     return;    
 });
-
-authAdminRouter.post("/register", async (req, res) => {
-    const signupData: ISignup = req.body;
-    const valid = await account.checkValidSignup(signupData.username, signupData.email, true);
-    switch (valid) {
-        case -1:
-            res.status(400).json({ message: "Username is already taken!" });
-            return;
-        case -2:
-            res.status(400).json({ message: "Email is already taken!" });
-            return;
-        default:
-            const hashedPassword: string = await hashPassword(signupData.password);
-            await account.createAccount(signupData.username, hashedPassword, signupData.email, signupData.firstName, signupData.lastName);
-            res.status(200).json({ message: "Register successfully!" });
-            break;
-    }
-});
-
 export default authAdminRouter;

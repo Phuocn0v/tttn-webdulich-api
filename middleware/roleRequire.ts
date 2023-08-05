@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-const rolesRequire = (roles: String[]) => {
+async function userRequire() {
     return (req: Request, res: Response, next: NextFunction) => {
-        console.log("rolesRequire")
         const authHeader = req.headers.authorization;
         const token = authHeader?.split(' ')[1];
 
@@ -15,13 +14,7 @@ const rolesRequire = (roles: String[]) => {
             if (err) {
                 return res.status(403).json({ message: "Token is invalid!" });
             }
-            let isRole = false;
-            for (let i = 0; i < roles.length; i++) {
-                if (roles[i] === user.roles) {
-                    isRole = true;
-                    break;
-                }
-            }
+            const isRole = user.roles.includes("user");
 
             if (!isRole) return res.status(403).json({ message: "Forbidden!" });
             req.body.user = user;
@@ -30,4 +23,28 @@ const rolesRequire = (roles: String[]) => {
     }
 };
 
-export default { rolesRequire };
+async function adminRequire() {
+    return (req: Request, res: Response, next: NextFunction) => {
+        const authHeader = req.headers.authorization;
+        const token = authHeader?.split(' ')[1];
+
+        if (token == null) {
+            return res.status(401).json({ message: "Token is required!" });
+        }
+
+        jwt.verify(token, process.env.JWT_PRIVATE_KEY as string, (err: any, user: any) => {
+            if (err) {
+                return res.status(403).json({ message: "Token is invalid!" });
+            }
+            const isRole = user.roles.includes("admin");
+
+            if (!isRole) return res.status(403).json({ message: "Forbidden!" });
+            req.body.user = user;
+            next();
+        });
+    }
+};
+
+
+
+export default { userRequire, adminRequire };

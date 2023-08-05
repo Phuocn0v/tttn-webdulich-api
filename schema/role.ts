@@ -1,9 +1,9 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    name: Schema.Types.String,
-    description: Schema.Types.String,
+    name: String,
+    description: String,
 });
-const roleSchema = mongoose.model("Role", schema);
+
+const roleSchema = mongoose.model("role", schema);
 export default roleSchema;

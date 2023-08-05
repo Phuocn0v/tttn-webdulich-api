@@ -20,7 +20,7 @@ async function createStaff(staff: IStaff) {
         username: staff.username,
         password: staff.password,
         dateJoined: Date.now(),
-    })   
+    })
     newStaff.save();
 }
 
